@@ -1,0 +1,190 @@
+/* Observe o trecho de código abaixo:
+
+int INDICE = 13, SOMA = 0, K = 0;
+
+enquanto K < INDICE faça
+{
+K = K + 1;
+SOMA = SOMA + K;
+}
+
+imprimir(SOMA);
+
+Ao final do processamento, qual será o valor da variável SOMA?*/
+
+
+$INDICE = 13;
+$SOMA =0; 
+$K = 0;
+
+ while ($K < $INDICE) {
+    $K = $K + 1;
+    $SOMA= $SOMA +$K;
+     }
+
+################# DEBUG DEV LUAN ##############
+echo '<br><pre>' ;   print_r($SOMA) ;   echo'</pre>' ;
+
+
+
+
+
+------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+/*2) Dado a sequência de Fibonacci, onde se inicia por 0 e 1 e o próximo valor sempre será a soma dos 2 valores anteriores (exemplo: 0, 1, 1, 2, 3, 5, 8, 13, 21, 34...), 
+escreva um programa na linguagem que desejar onde, informado um número, ele calcule a sequência de Fibonacci e 
+retorne uma mensagem avisando se o número informado pertence ou não a sequência.
+
+IMPORTANTE:
+Esse número pode ser informado através de qualquer entrada de sua preferência ou pode ser previamente definido no código;*/
+
+    $numero =1; // aqui é a entrada do numero
+  $n=10; // aqui é o intervalo da sequencia de fibonnaci, ex: n = 10, vai printar 10 numeros da sequencia;
+  $ultimo=1;
+  $penultimo=0;
+    
+  for($count=1 ; $count<=$n-2 ; $count++){
+   $atual = $ultimo + $penultimo;
+   $att[$atual]= (explode("-",$atual));
+  
+   $penultimo = $ultimo;
+   $ultimo = $atual;
+  }
+  
+   if ($att[$numero]) {   
+    echo "o numero ". $numero ." pertence a seuquenca de fibonnaci <br>";
+    echo "segue sua sequencia ".print_r($att);
+
+ }else{
+    echo " o numero $numero nao pertense a sequencia de fibonnaci";
+
+ }
+
+
+
+
+
+
+------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+/*
+3) Dado um vetor que guarda o valor de faturamento diário de uma distribuidora, faça um programa, na linguagem que desejar, que calcule e retorne:
+• O menor valor de faturamento ocorrido em um dia do mês;
+• O maior valor de faturamento ocorrido em um dia do mês;
+• Número de dias no mês em que o valor de faturamento diário foi superior à média mensal.
+
+IMPORTANTE:
+a) Usar o json ou xml disponível como fonte dos dados do faturamento mensal;
+b) Podem existir dias sem faturamento, como nos finais de semana e feriados. Estes dias devem ser ignorados no cálculo da média;
+
+*/
+
+$json = file_get_contents("dados.json");
+$data = json_decode($json);
+$valor=[];
+foreach($data as $data1){
+    $valor[] = $data1->valor  ;
+}    
+
+$valor1 = array_filter($valor);
+$valor2 =array_sum($valor1) / count($valor1);
+
+
+################# DEBUG DEV LUAN ##############
+echo '<br><pre>' ;   print_r("O menor valor de faturamento ocorrido em um dia do mês".min($valor1)) ;   echo'</pre>' ;
+echo '<br><pre>' ;   print_r(" O maior valor de faturamento ocorrido em um dia do mês".max($valor1)) ;   echo'</pre>' ;
+
+
+
+
+
+
+------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+/**4) Dado o valor de faturamento mensal de uma distribuidora, detalhado por estado:
+
+SP – R$67.836,43
+RJ – R$36.678,66
+MG – R$29.229,88
+ES – R$27.165,48
+Outros – R$19.849,53 
+
+Escreva um programa na linguagem que desejar onde calcule o percentual de representação que cada estado teve dentro do valor total mensal da distribuidora.
+*/
+
+
+
+
+
+$compras=['sp'=>6783643,
+'rj'=>3667866,
+'mg'=>2922988,
+'es'=>2922988,
+'outro'=>2922988
+
+];
+
+$soma= array_sum($compras);
+ 
+$percentSp = round(($compras['sp']/$soma ) *100,2);
+$percentRj = round(($compras['rj']/$soma ) *100,2);
+$percentMg = round(($compras['mg']/$soma ) *100,2);
+$percentEs = round(($compras['es']/$soma ) *100,2);
+$perrcentOut = round(($compras['outro']/$soma ) *100,2);
+
+
+################# DEBUG DEV LUAN ##############
+echo '<br><pre>' ;   print_r("o percentual de faturamento de SP é".$percentSp."%") ;   echo'</pre>' ;
+echo '<br><pre>' ;   print_r("o percentual de faturamento de RJ é".$percentRj."%") ;   echo'</pre>' ;
+echo '<br><pre>' ;   print_r("o percentual de faturamento de MG é".$percentMg."%") ;   echo'</pre>' ;
+echo '<br><pre>' ;   print_r("o percentual de faturamento de ES é".$percentEs."%") ;   echo'</pre>' ;
+echo '<br><pre>' ;   print_r("o percentual de faturamento de Outros é".$perrcentOut."%") ;   echo'</pre>' ;
+
+
+
+
+
+
+------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+/**5) Escreva um programa que inverta os caracteres de um string.
+
+IMPORTANTE:
+a) Essa string pode ser informada através de qualquer entrada de sua preferência ou pode ser previamente definida no código;
+b) Evite usar funções prontas, como, por exemplo, reverse; */
+$nome = 'nome';
+$invert = str_split($nome);
+krsort ($invert);
+foreach( $invert as $chave => $valor ){
+    echo $valor;
+}
